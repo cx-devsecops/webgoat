@@ -6,7 +6,7 @@ pipeline {
         CX_TENANT = 'ferreiralucas-sedemo'
         CX_CLIENT_ID = 'jenkins-plugin'
         CX_CLIENT_SECRET = 'htYnAde9Ku9xIJRO8lYZPJrw2z2LzE8J'
-        CX_ADDITIONAL_PARAMS = '--scan-type sast,sca,scs'
+        CX_ADDITIONAL_PARAMS = '--scan-types sast,sca,scs'
         CX_PROJECT_NAME = 'cx-devsecops/webgoat'
         
     }
