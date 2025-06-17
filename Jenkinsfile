@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         CX_VERSION = '2.3.24'
-        CX_BASE_URI = 'htpps://us.ast.checkmarx.net'
+        CX_BASE_URI = 'https://ast.checkmarx.net'
         CX_TENANT = 'ferreiralucas-sedemo'
         CX_CLIENT_ID = 'jenkins-plugin'
         CX_CLIENT_SECRET = 'htYnAde9Ku9xIJRO8lYZPJrw2z2LzE8J'
