@@ -1,9 +1,7 @@
 name: Welcome
 
 on:
-  issues:
-    types:
-      - opened
+  workflow_dispatch:
 
 jobs:
   greeting:

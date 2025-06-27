@@ -1,14 +1,6 @@
 name: "Main / Pull requests build"
 on:
-    pull_request:
-        paths-ignore:
-            - '.txt'
-            - 'LICENSE'
-            - 'docs/**'
-        branches: [ main ]
-    push:
-        branches:
-            - main
+  workflow_dispatch:
 
 jobs:
     pre-commit:
