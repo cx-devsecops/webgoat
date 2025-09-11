@@ -33,4 +33,4 @@ jobs:
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
           branch: ${{ github.ref }}
-          additional_params: '--sca-resolver ./sca-resolver/ScaResolver'
+          additional_params: '--sca-resolver online ./sca-resolver/ScaResolver'
