@@ -11,11 +11,11 @@ jobs:
 
       - name: Setup Maven
         run: |
-          apt install openjdk-17-jdk -y
-          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-          export PATH="$JAVA_HOME/bin:$PATH"
-          source ~/.profile
-          apt install maven -y
+          sudo apt install openjdk-17-jdk -y
+          sudo export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+          sudo export PATH="$JAVA_HOME/bin:$PATH"
+          sudo source ~/.profile
+          sudo apt install maven -y
           mvn -version
 
       - name: Download Cx SCA Resolver
