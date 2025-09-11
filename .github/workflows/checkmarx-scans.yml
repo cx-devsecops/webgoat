@@ -12,9 +12,9 @@ jobs:
       - name: Setup Maven
         run: |
           sudo apt install openjdk-17-jdk -y
-          sudo export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-          sudo export PATH="$JAVA_HOME/bin:$PATH"
-          sudo source ~/.profile
+          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+          export PATH="$JAVA_HOME/bin:$PATH"
+          source ~/.profile
           sudo apt install maven -y
           mvn -version
 
