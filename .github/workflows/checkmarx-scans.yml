@@ -10,7 +10,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Set up Maven
-        uses: hb0730/maven-action@latest
+        uses: hb0730/maven-action@v1.0.2
         with:
           maven-version: 3.14.0
 
