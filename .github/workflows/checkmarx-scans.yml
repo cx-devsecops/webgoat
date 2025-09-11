@@ -9,10 +9,14 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Maven
-        uses: hb0730/maven-action@v1.0.2
-        with:
-          maven-version: 3.14.0
+      - name: Setup Maven
+        run: |
+          apt install openjdk-17-jdk -y
+          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+          export PATH="$JAVA_HOME/bin:$PATH"
+          source ~/.profile
+          apt install maven -y
+          mvn -version
 
       - name: Download Cx SCA Resolver
         run: |
