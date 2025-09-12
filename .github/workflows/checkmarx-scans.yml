@@ -16,7 +16,7 @@ jobs:
           export PATH="$JAVA_HOME/bin:$PATH"
           source ~/.profile
           sudo apt install maven -y
-          mvn -version
+          mvn dependency:tree
 
       - name: Download Cx SCA Resolver
         run: |
@@ -33,4 +33,5 @@ jobs:
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
           branch: ${{ github.ref }}
+
           additional_params: '--sca-resolver ./sca-resolver/ScaResolver'
