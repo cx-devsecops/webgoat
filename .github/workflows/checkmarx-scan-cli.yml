@@ -1,0 +1,32 @@
+name: Checkmarx One Scan
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Setup Maven
+        run: |
+          sudo apt install openjdk-17-jdk -y
+          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
+          export PATH="$JAVA_HOME/bin:$PATH"
+          source ~/.profile
+          sudo apt install maven -y
+          mvn dependency:tree
+
+      - name: Download Cx SCA Resolver
+        run: |
+          mkdir -p sca-resolver; cd sca-resolver
+          curl -L -o ScaResolver-linux64.tar.gz https://sca-downloads.s3.amazonaws.com/cli/latest/ScaResolver-linux64.tar.gz
+          tar -xvzf ScaResolver-linux64.tar.gz
+
+      - name: Checkmarx One CLI Action
+        run: |
+          mkdir cx-cli; cd cx-cli
+          curl -Lo ast-cli.tar.gz https://github.com/Checkmarx/ast-cli/releases/download/2.3.33/ast-cli_2.3.33_linux_x64.tar.gz
+          tar -xzvf ast-cli.tar.gz
+          ./cx scan create -s ../ --project-name ${{ github.repository }} --branch ${{ github.ref }} --base-uri ${{ secrets.CX_BASE_URI }} --tenant ${{ secrets.CX_TENANT_NAME }} --client-id ${{ secrets.CX_CLIENT_ID }} --client-secret ${{ secrets.CX_CLIENT_SECRET }} --sca-resolver ../sca-resolver/ScaResolver
