@@ -18,7 +18,7 @@ jobs:
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
           branch: ${{ github.ref }}
-          additional_params: '--scan-types scs --scs-engines secret-detection --scs-commit-history=false --report-format json --filter severity=critical;high;medium --report-format summaryJSON'
+          ascan_params: '--scan-types scs --scs-engines secret-detection --report-format json --filter severity=critical;high;medium'
 
 #      - name: Upload JSON Report
 #        uses: actions/upload-artifact@v7.0.0
