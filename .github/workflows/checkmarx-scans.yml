@@ -1,4 +1,4 @@
-name: Checkmarx One Scan
+name: Checkmarx One Secrets Scan
 on:
   workflow_dispatch:
   
@@ -9,21 +9,6 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Setup Maven
-        run: |
-          sudo apt install openjdk-17-jdk -y
-          export JAVA_HOME=/usr/lib/jvm/java-17-openjdk-amd64
-          export PATH="$JAVA_HOME/bin:$PATH"
-          source ~/.profile
-          sudo apt install maven -y
-          mvn dependency:tree
-
-      - name: Download Cx SCA Resolver
-        run: |
-          mkdir -p sca-resolver; cd sca-resolver
-          curl -L -o ScaResolver-linux64.tar.gz https://sca-downloads.s3.amazonaws.com/cli/latest/ScaResolver-linux64.tar.gz
-          tar -xvzf ScaResolver-linux64.tar.gz
-
       - name: Checkmarx One CLI Action
         uses: checkmarx/ast-github-action@main #Github Action version
         with:
@@ -33,5 +18,7 @@ jobs:
           cx_client_id: ${{ secrets.CX_CLIENT_ID }}
           cx_client_secret: ${{ secrets.CX_CLIENT_SECRET }}
           branch: ${{ github.ref }}
+          additional_params: '--scan-types scs --scs-engines secret-detection --scs-commit-history=false --report-format json --filter severity=critical;high;medium --report-format summaryJSON'
 
-          additional_params: '--sca-resolver ./sca-resolver/ScaResolver'
+#      - name: Upload JSON Report
+#        uses: actions/upload-artifact@v7.0.0
